@@ -19,7 +19,7 @@ documentation is unclear or it has any issues please see [CONTRIBUTING.md](./CON
 ### Run simple interactive server
 
 ```shell
-docker run -it --rm --net=host lacledeslan/gamesvr-tf2classified ./srcds_run_64 -game tf2classified -tf_path /app/tf2 +map 4arena_floodgate;
+docker run -it --rm --net=host lacledeslan/gamesvr-tf2classified ./srcds.sh -game tf2classified -tf_path /app/tf2 +map 4arena_floodgate;
 ```
 
 ## Run self-tests
