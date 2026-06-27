@@ -3,7 +3,7 @@
 *Team Fortress 2 Classified* (previously Team Fortress 2 Classic) is a modification of Team Fortress 2, developed by
 [EMINOMA](https://store.steampowered.com/developer/EMINOMA). Defining itself as a "re-imagining of the 2008-2009 era of
 the original Team Fortress 2", it restores the character shading of the game's beta, reimplements cut content, removes
-many later additions to the game’s content and lore, and adds new content intended to evoke the spirit of older updates
+many later additions to the game's content and lore, and adds new content intended to evoke the spirit of older updates
 to the game. Notable content additions include two additional teams, Green (GRN) and Yellow (YLW) which can be used by
 mappers to modify existing game modes, and an escort game mode based on the scrapped "Civilian" class.
 
