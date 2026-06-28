@@ -1,0 +1,5 @@
+### General (reduce the breadth of Docker's context) ###
+.documentation/**
+.git/**
+.github/**
+.vscode/**

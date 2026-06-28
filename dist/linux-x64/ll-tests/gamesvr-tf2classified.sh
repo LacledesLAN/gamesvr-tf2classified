@@ -154,6 +154,13 @@ should_lack 'map load failed:' 'server unable to find custom-content map';
 should_have 'Server is hibernating' 'srcds_run successfully hibernated';
 should_lack 'Warning: failed to init SDL thread priority manager: SDL not found' 'Server has dependency libsdl2-2.0-0:i386';
 
+# Verify steamclinet.so succesfully linked
+should_have "Loaded '/app/tf2c/.steam/sdk64/steamclient.so' OK" "steamclient.so successfully loaded";
+should_lack 'steamclient.so: cannot open shared object file: No such file or directory' 'steamclient.so found';
+
+# Verify libtinfo is succesfully linked
+should_lack 'Failed to load 32-bit libtinfo.so.5 or libncurses.so.5.' '32-bit libtinfo.so.5 and libncurses.so.5 are available';
+
 # Verify server responds to commands
 should_echo "say STARTING COMMAND TESTS" 'Console: STARTING COMMAND TESTS';
 #####################################################################################################

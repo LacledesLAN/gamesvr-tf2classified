@@ -1,8 +1,20 @@
 #!/bin/bash
 set -e;
+set -o pipefail;
 set -u;
 
 echo -e '\n\033[1m[Build tf2classified]\033[0m'
+
+# Verify docker command-line tool exists
+if ! command -v docker &> /dev/null; then
+    if ! docker info &> /dev/null; then
+        echo "ERROR: Docker is installed, but the current user cannot access the Docker daemon." >&2;
+    else
+        echo "ERROR: Docker is not installed or not in your PATH." >&2;
+    fi
+
+    exit 1;
+fi
 
 
 #
@@ -10,7 +22,7 @@ echo -e '\n\033[1m[Build tf2classified]\033[0m'
 #
 option_skip_pull=false;					# Skip pulling the latest base image?
 option_skip_tests=false;				# Skip running tests?
-options_skip_push_dockerhub=false;		# Skip pushing to Docker Hub?
+option_skip_push_dockerhub=false;		# Skip pushing to Docker Hub?
 
 
 #
@@ -27,7 +39,7 @@ do
 			option_skip_tests=true;
 			;;
 		--skip-push-dockerhub)
-			options_skip_push_dockerhub=true;
+			option_skip_push_dockerhub=true;
 			;;
 		# unknown
 		*)
@@ -46,20 +58,26 @@ if [ "$option_skip_pull" != 'true' ]; then
 	docker pull lacledeslan/gamesvr-tf2:base-latest
 else
 	echo "Skipping pulling the latest base image";
-fi;
+fi
 
 
 #
 # Build the Docker image
 #
-docker build . -f linux.Dockerfile --rm -t lacledeslan/gamesvr-tf2classified:latest --build-arg BUILDNODE="$(cat /proc/sys/kernel/hostname)";
+if command -v git &> /dev/null && git rev-parse --git-dir &> /dev/null; then
+    SOURCE_COMMIT=$(git rev-parse --short HEAD)$([ -n "$(git status --porcelain)" ] && echo "-dirty");
+else
+    SOURCE_COMMIT="unspecified";
+fi
+
+docker build . -f linux.Dockerfile --rm -t lacledeslan/gamesvr-tf2classified:latest --build-arg BUILDNODE="$(hostname)" --build-arg SOURCE_COMMIT="$SOURCE_COMMIT";
 
 
 #
 # Run tests for the Docker image unless skipped
 #
 if [ "$option_skip_tests" != 'true' ]; then
-	echo -e '\n\033[1m[Running tests for tf2classified]\033[0m'
+	echo -e '\n\033[1m[Running tests for tf2classified]\033[0m';
 	docker run -it --rm lacledeslan/gamesvr-tf2classified:latest ./ll-tests/gamesvr-tf2classified.sh;
 else
 	echo "Skipping tests";
@@ -69,8 +87,8 @@ fi;
 #
 # Push the Docker image to Docker Hub unless skipped
 #
-if [ "$options_skip_push_dockerhub" != 'true' ]; then
-	docker push lacledeslan/gamesvr-tf2classified:latest
+if [ "$option_skip_push_dockerhub" != 'true' ]; then
+	docker push lacledeslan/gamesvr-tf2classified:latest;
 else
 	echo "Skipping push to Docker Hub";
 fi;
