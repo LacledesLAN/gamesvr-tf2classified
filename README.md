@@ -7,7 +7,7 @@ many later additions to the game's content and lore, and adds new content intend
 to the game. Notable content additions include two additional teams, Green (GRN) and Yellow (YLW) which can be used by
 mappers to modify existing game modes, and an escort game mode based on the scrapped "Civilian" class.
 
-![TF2 Classified Banner](https://raw.githubusercontent.com/LacledesLAN/gamesvr-tf2classified/master/Documentation/images/tf2classified_banner00.jpg "TF2 Classified Banner")
+![TF2 Classified Banner](https://raw.githubusercontent.com/LacledesLAN/gamesvr-tf2classified/refs/heads/main/.documentation/images/banner-tf2classified.jpg "TF2 Classified Banner")
 
 This repository is maintained by [Laclede's LAN](https://lacledeslan.com). Its contents are intended to be bare-bones
 and used as a stock server. For examples of building a customized server from this Docker image browse its related
