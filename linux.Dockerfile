@@ -9,7 +9,6 @@ ARG SKIP_STEAMCMD=false
 RUN mkdir --parents /output && \
     /app/steamcmd.sh +force_install_dir /output +login anonymous +app_update 3557020 validate +quit;
 
-COPY ./dist/linux-x64 /output
 
 
 #-------
@@ -50,7 +49,6 @@ RUN dpkg --add-architecture i386 && \
     # Update username, home directory, and permissions for the TF2 Classified user
     usermod -l TF2classified TF2 && \
     usermod -d /app/tf2c/ TF2classified && \
-    chmod +x /app/tf2c/ll-tests/*.sh && \
     mkdir -p /app/tf2c/logs && \
     chmod 774 /app/tf2c/logs;
 

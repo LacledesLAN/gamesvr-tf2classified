@@ -25,7 +25,7 @@ docker run -it --rm --net=host lacledeslan/gamesvr-tf2classified ./srcds_run_64 
 ## Run self-tests
 
 ```shell
-docker run -it --rm --net=host lacledeslan/gamesvr-tf2classified ./ll-tests/gamesvr-tf2classified.sh
+bash ./tests/test-gamesvr-tf2classified.sh lacledeslan/gamesvr-tf2classified:latest /app/tf2c/srcds.sh -game tf2classified -tf_path /app/tf2 +map arena_floodgate -insecure -maxplayers 8 -norestart +sv_lan 1
 ```
 
 ## Getting Started with Game Servers in Docker

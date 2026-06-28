@@ -3,7 +3,8 @@ cache/linux/steamcmd/*
 !cache/linux/steamcmd/.gitkeep
 cache/linux/tf2/*
 !cache/linux/tf2/README.md
-
+tests/logs/**
+!tests/logs/.gitkeep
 
 ### Linux Cruft ###
 *~
