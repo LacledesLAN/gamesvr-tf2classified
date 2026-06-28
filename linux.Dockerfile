@@ -11,6 +11,8 @@ RUN mkdir --parents /output && \
 
 COPY ./dist/linux-x64 /output
 
+
+#-------
 FROM lacledeslan/gamesvr-tf2:base-latest
 
 ARG BUILDNODE=unspecified
@@ -35,18 +37,18 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y lib32gcc-s1 lib32stdc++6 libncurses6:i386 libtinfo6:i386 && \
     rm -rf /var/lib/apt/lists/*
 
-COPY --chown=TF2:root --from=tf2class-builder /output /app/tf2classified
+COPY --chown=TF2:root --from=tf2class-builder /output /app/tf2c
 
 # UPDATE USERNAME & ensure permissions
 RUN usermod -l TF2classified TF2 && \
-    usermod -d /app/tf2classified/ TF2classifiedFreeplay && \
-    chmod +x /app/tf2classified/ll-tests/*.sh && \
-    mkdir -p /app/tf2classified/logs/ && \
-    chmod 774 /app/tf2classified/logs/
+    usermod -d /app/tf2c/ TF2classified && \
+    chmod +x /app/tf2c/ll-tests/*.sh && \
+    mkdir -p /app/tf2c/logs/ && \
+    chmod 774 /app/tf2c/logs/
 
 USER TF2classified
 
-WORKDIR /app/tf2classified/
+WORKDIR /app/tf2c/
 
 CMD ["/bin/bash"]
 
