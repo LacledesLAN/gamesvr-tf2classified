@@ -80,10 +80,9 @@ fi
 echo -e "## Running Tests\n"
 
 if [ "$option_skip_tests" != 'true' ]; then
-	echo -e '\n\033[1m[Running tests for tf2classified]\033[0m';
     bash ./tests/test-gamesvr-tf2classified.sh "$docker_tag" "${docker_test_command[@]}";
 else
-	echo "Skipping tests!";
+	echo "Skipping tests.";
 fi;
 
 
@@ -98,7 +97,8 @@ else
 	echo "Skipping push to Docker Hub";
 fi;
 
+
 #
 # ALL DONE
 #
-echo -e "## All Done\n"
+echo -e "**Job's Done**\n"

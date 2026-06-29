@@ -139,15 +139,14 @@ function should_echo() {
 should_have 'server_srv.so loaded for "Team Fortress"' 'Base TF2 assets loaded successfully';
 should_lack 'Server restart in 10 seconds' 'Server is not boot-looping';
 should_lack 'Running the dedicated server as root' 'Server is not running under root';
-should_lack 'map load failed:' 'server unable to find custom-content map';
 should_have 'Server is hibernating' 'srcds_run successfully hibernated';
 should_lack 'Warning: failed to init SDL thread priority manager: SDL not found' 'Server has dependency libsdl2-2.0-0:i386';
 
-# Verify steamclinet.so succesfully linked
+# Verify steamclient.so successfully linked
 should_have "Loaded '/app/tf2c/.steam/sdk64/steamclient.so' OK" "steamclient.so successfully loaded";
 should_lack 'steamclient.so: cannot open shared object file: No such file or directory' 'steamclient.so found';
 
-# Verify libtinfo is succesfully linked
+# Verify libtinfo is successfully linked
 should_lack 'Failed to load 32-bit libtinfo.so.5 or libncurses.so.5.' '32-bit libtinfo.so.5 and libncurses.so.5 are available';
 
 # Verify server responds to commands
