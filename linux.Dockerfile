@@ -14,22 +14,20 @@ RUN mkdir --parents /output && \
 #-------
 FROM lacledeslan/gamesvr-tf2:base-latest
 
-ARG BUILDNODE=unspecified
-ARG SOURCE_COMMIT=unspecified
+ARG BUILD_NODE=unspecified
+ARG GIT_REVISION=unspecified
 
 ENV LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
 HEALTHCHECK NONE
 
 LABEL architecture="amd64" \
-      maintainer="Laclede's LAN <contact@lacledeslan.com>" \
-      com.lacledeslan.build-node=$BUILDNODE \
-      org.label-schema.schema-version="1.0" \
-      org.label-schema.url="https://github.com/LacledesLAN/README.1ST" \
-      org.opencontainers.image.description="Team Fortress 2 Classified Dedicated Server" \
-      org.opencontainers.image.revision=$SOURCE_COMMIT \
-      org.opencontainers.image.source="https://github.com/LacledesLAN/gamesvr-tf2classified" \
-      org.opencontainers.image.vendor="Laclede's LAN"
+    com.lacledeslan.build-node=$BUILD_NODE \
+    maintainer="Laclede's LAN <contact@lacledeslan.com>" \
+    org.opencontainers.image.description="Team Fortress 2 Classified Dedicated Server" \
+    org.opencontainers.image.revision=$GIT_REVISION \
+    org.opencontainers.image.source="https://github.com/LacledesLAN/gamesvr-tf2classified" \
+    org.opencontainers.image.vendor="Laclede's LAN"
 
 COPY --chown=TF2:root --from=tf2class-builder /output /app/tf2c
 
