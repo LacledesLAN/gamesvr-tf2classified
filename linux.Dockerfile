@@ -1,7 +1,5 @@
 FROM lacledeslan/steamcmd AS tf2class-builder
 
-ARG SKIP_STEAMCMD=false
-
 # Copy cached build files (if any)
 # TODO!
 
